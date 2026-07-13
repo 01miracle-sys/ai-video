@@ -1,0 +1,32 @@
+# AI Video Learning Assistant 配置
+
+# ─── 语音识别 ───────────────────────────────────
+asr:
+  model_size: small            # 模型大小: tiny/base/small/medium/large
+  device: cpu                  # 推理设备: cpu/cuda
+  compute_type: int8           # 精度: int8/float16/float32
+  cpu_threads: 4               # CPU 线程数
+  language: zh                 # 目标语言
+  beam_size: 5                 # 束搜索宽度
+  vad_filter: true             # 语音活动检测
+
+# ─── Ollama 笔记生成 ─────────────────────────────
+notes:
+  model: "qwen2.5:3b"          # Ollama 模型名
+  api_url: "http://localhost:11434/api/generate"
+  temperature: 0.3             # 生成温度 (0-1)
+  chunk_size: 4000             # 长文本分段大小（字符数）
+  max_tokens: 4096             # 最大生成 token 数
+  context_size: 8192           # 模型上下文窗口
+
+# ─── 字幕烧录 ───────────────────────────────────
+subtitle:
+  font: "Microsoft YaHei"      # 字幕字体
+  font_size: 18                # 字体大小
+  outline: 1                   # 文字描边
+  preset: "fast"               # 编码预设
+  crf: 23                      # 视频质量 (0-51)
+
+# ─── 输出 ───────────────────────────────────────
+output:
+  dir: "outputs"               # 输出目录

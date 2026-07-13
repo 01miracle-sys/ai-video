@@ -1,0 +1,26 @@
+# Python __pycache__
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Virtual environment
+venv/
+.env/
+*.venv/
+
+# IDE
+.vscode/
+.idea/
+
+# Output files (如果要保留输出目录结构但不上传文件，用这个)
+outputs/*.mp4
+outputs/*.srt
+outputs/*.txt
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Config with secrets (如果有敏感信息)
+# config/settings.yaml
