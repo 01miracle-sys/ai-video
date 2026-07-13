@@ -181,7 +181,7 @@ class OllamaTranslator(BaseTranslator):
 
     def __init__(
         self,
-        model: str = "qwen2.5:3b",
+        model: str = "deepseek-r1",
         api_url: str = "http://localhost:11434/api/generate",
         temperature: float = 0.3,
     ) -> None:
@@ -292,7 +292,7 @@ def create_translator(
 
     # 默认使用 Ollama
     return OllamaTranslator(
-        model=tcfg.get("model", "qwen2.5:3b"),
+        model=tcfg.get("model", "deepseek-r1"),
         api_url=tcfg.get("api_url", "http://localhost:11434/api/generate"),
         temperature=tcfg.get("temperature", 0.3),
     )

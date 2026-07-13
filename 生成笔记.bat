@@ -4,7 +4,7 @@ title AI Video Learning Assistant - 笔记生成
 
 echo ========================================
 echo   AI Video Learning Assistant
-echo   笔记生成 (Ollama qwen2.5:3b)
+echo   笔记生成 (Ollama deepseek-r1)
 echo ========================================
 echo.
 

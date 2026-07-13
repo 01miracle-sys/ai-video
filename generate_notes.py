@@ -20,7 +20,7 @@ import requests
 
 # ─── 配置 ───────────────────────────────────────────
 OLLAMA_API = "http://localhost:11434/api/generate"
-DEFAULT_MODEL = "qwen2.5:3b"
+DEFAULT_MODEL = "deepseek-r1:1.5b"
 DEFAULT_CHUNK_SIZE = 4000  # 每段最大字符数（中文）
 
 # ─── 提示词模板 ─────────────────────────────────────
@@ -70,7 +70,7 @@ def check_model(model: str) -> bool:
     try:
         resp = requests.get("http://localhost:11434/api/tags", timeout=5)
         models = [m["name"] for m in resp.json().get("models", [])]
-        # 匹配模型名（可能是 qwen2.5:3b 或 qwen2.5:latest 等）
+        # 匹配模型名（可能是 deepseek-r1 或 qwen2.5:latest 等）
         base = model.split(":")[0]
         for m in models:
             if m.startswith(base) or m == model:

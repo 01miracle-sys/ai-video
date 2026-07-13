@@ -74,7 +74,7 @@ pip install -r requirements.txt
 ### 第 3 步：下载 AI 模型（只需一次）
 
 ```bash
-ollama pull qwen2.5:3b
+ollama pull deepseek-r1
 ```
 
 > 这是一个 3B 参数的中文模型，约 2GB，速度快、效果够用。电脑好的话可以用 `qwen2.5:7b`（7GB）。
@@ -140,7 +140,7 @@ asr:
   compute_type: int8         # 量化精度
 
 notes:
-  model: "qwen2.5:3b"        # 笔记模型
+  model: "deepseek-r1"        # 笔记模型
   temperature: 0.3           # 创意度（0=严谨，1=自由）
 
 subtitle:
@@ -173,7 +173,7 @@ ollama serve
 
 ### 4. 笔记是英文的？
 
-确保 `config/settings.yaml` 里 `asr.language` 是 `zh`，并且下载了中文模型（如 `qwen2.5:3b`）。
+确保 `config/settings.yaml` 里 `asr.language` 是 `zh`，并且下载了中文模型（如 `deepseek-r1`）。
 
 ### 5. 内存不够？
 

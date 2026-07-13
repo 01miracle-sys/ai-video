@@ -4,7 +4,7 @@
 用法:
     from src.notes.generator import NotesGenerator
 
-    gen = NotesGenerator(model="qwen2.5:3b")
+    gen = NotesGenerator(model="deepseek-r1")
     notes = gen.generate("outputs/test.txt")
 """
 
@@ -49,7 +49,7 @@ class NotesGenerator:
 
     def __init__(
         self,
-        model: str = "qwen2.5:3b",
+        model: str = "deepseek-r1:1.5b",
         api_url: str = "http://localhost:11434/api/generate",
         temperature: float = 0.3,
         chunk_size: int = 4000,

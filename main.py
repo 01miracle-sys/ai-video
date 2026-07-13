@@ -16,6 +16,62 @@ import sys
 from pathlib import Path
 
 
+def _load_yaml_value(filepath: str, *keys: str) -> str | None:
+    """从 YAML 文件中读取嵌套键的值（轻量级，无外部依赖）"""
+    try:
+        content = Path(filepath).read_text(encoding="utf-8")
+    except (FileNotFoundError, OSError):
+        return None
+
+    lines = content.split("\n")
+    path: list[str] = []
+    for line in lines:
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+        indent = len(line) - len(line.lstrip())
+        depth = indent // 2
+        path = path[:depth]
+        if ":" in stripped:
+            key, _, rest = stripped.partition(":")
+            key = key.strip()
+            path.append(key)
+
+            # --- 解析值：去引号 + 去行内注释 ---
+            val_raw = rest.strip()
+            if not val_raw:
+                continue
+
+            # 去掉行内注释（# 之后的内容），但保留引号内的 #
+            if val_raw.startswith('"'):
+                # 双引号字符串：找到配对的结束引号
+                end_quote = val_raw.find('"', 1)
+                if end_quote > 0:
+                    val = val_raw[1:end_quote]
+                else:
+                    val = val_raw
+            elif val_raw.startswith("'"):
+                # 单引号字符串：找到配对的结束引号
+                end_quote = val_raw.find("'", 1)
+                if end_quote > 0:
+                    val = val_raw[1:end_quote]
+                else:
+                    val = val_raw
+            else:
+                # 无引号值：截断到第一个 # 或行尾
+                comment_pos = val_raw.find("#")
+                if comment_pos >= 0:
+                    val = val_raw[:comment_pos].strip()
+                else:
+                    val = val_raw.strip()
+
+            if len(path) == len(keys) and all(
+                path[i] == keys[i] for i in range(len(keys))
+            ):
+                return val if val else None
+    return None
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="AI Video Learning Assistant — 视频学习工具",
@@ -107,7 +163,11 @@ def main() -> None:
 
         from src.notes.generator import NotesGenerator
 
-        gen = NotesGenerator()
+        # 从配置文件读取模型名
+        config_model = _load_yaml_value("config/settings.yaml", "notes", "model")
+        model = args.model or config_model or "deepseek-r1:1.5b"
+
+        gen = NotesGenerator(model=model)
 
         # 前置检查
         if not gen.check_service():
