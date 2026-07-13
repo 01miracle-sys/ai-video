@@ -17,6 +17,10 @@ venv/
 outputs/*.mp4
 outputs/*.srt
 outputs/*.txt
+tests/*.mp4
+tests/*.srt
+tests/*.txt
+.workbuddy/
 
 # OS
 Thumbs.db
@@ -24,3 +28,4 @@ Thumbs.db
 
 # Config with secrets (如果有敏感信息)
 # config/settings.yaml
+沟通.md
