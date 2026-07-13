@@ -1,0 +1,18 @@
+INFO:     Started server process [27276]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 10048] error while attempting to bind on address ('0.0.0.0', 8000): [winerror 10048] 通常每个套接字地址(协议/网络地址/端口)只允许使用一次。
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+============================================================
+  AI Video Subtitle Service
+============================================================
+  Local:     http://localhost:8000
+  Network:   http://192.168.1.4:8000
+  API docs:  http://localhost:8000/docs
+  Health:    http://localhost:8000/api/health
+============================================================
+  Install the Tampermonkey userscript on your phone
+  or open the network URL above in your mobile browser
+============================================================
+

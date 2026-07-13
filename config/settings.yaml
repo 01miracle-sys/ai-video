@@ -27,6 +27,29 @@ subtitle:
   preset: "fast"               # 编码预设
   crf: 23                      # 视频质量 (0-51)
 
+# ─── Web 服务 ───────────────────────────────────
+server:
+  host: "0.0.0.0"              # 监听地址 (0.0.0.0 = 允许局域网访问)
+  port: 8000                   # 服务端口
+  max_cache_size: 10           # 最大缓存任务数
+  cleanup_hours: 24            # 自动清理时间（小时）
+  max_concurrent_tasks: 2      # 最多同时处理的任务数
+
+# ─── 翻译 ───────────────────────────────────────
+translation:
+  enabled: true
+  provider: "ollama"           # 翻译后端: ollama / api
+  model: "qwen2.5:3b"          # Ollama 翻译模型
+  api_url: "http://localhost:11434/api/generate"
+  source_language: "ja"        # 默认源语言
+  target_language: "zh"        # 默认目标语言
+  batch_size: 5                # 每批翻译段落数
+  temperature: 0.3             # 生成温度
+  # --- API 翻译后端配置（可选）---
+  api_provider: ""             # google / baidu / deepl
+  api_key: ""                  # API 密钥
+  api_endpoint: ""             # 自定义 API 端点
+
 # ─── 输出 ───────────────────────────────────────
 output:
   dir: "outputs"               # 输出目录

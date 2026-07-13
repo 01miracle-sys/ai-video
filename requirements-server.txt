@@ -1,0 +1,7 @@
+# AI Video Subtitle Service 额外依赖
+# 安装: pip install -r requirements-server.txt
+
+fastapi>=0.104.0              # Web 框架
+uvicorn>=0.24.0               # ASGI 服务器
+python-multipart>=0.0.6       # 文件上传支持
+yt-dlp>=2023.10.0             # 视频下载（YouTube/B站等）
